@@ -10,8 +10,8 @@
 #include "pen.h"
 
 /* Default paperboard sizes (width is the distance between the 2 motors */
-#define PAPERBOARD_WIDTH_MM   675.0
-#define PAPERBOARD_HEIGHT_MM  880.0
+#define PAPERBOARD_WIDTH_MM   800.0
+#define PAPERBOARD_HEIGHT_MM  900.0
 
 /* Default scale factor between the paperboard surface and the drawing area.
  * It helps to define the drawing area where drawing are "perfect" vs.
@@ -183,17 +183,31 @@ static __attribute__ ((unused)) float distance(struct kinematic to)
 int draw_line(float x, float y)
 {
 	struct kinematic to;
+	
+	float x_deplacement = x - current.x + current.da_x0;
+	float y_deplacement = y - current.y + current.da_y0;
 
-	x += current.da_x0;
-	y += current.da_y0;
+	printf("value x_deplacement : %f\n", x_deplacement);
+	printf("value y_deplacement : %f\n", y_deplacement);
 
-	to.width = current.width;
-	to.height = current.height;
-	to.x = x;
-	to.y = y;
-	xy2lr(&to);
+	int step = (int) sqrt(x_deplacement*x_deplacement + y_deplacement*y_deplacement);
 
-	draw_move(to);
+	for(int i=0; i <step; i++){
+
+		current.x += x_deplacement/step;
+		current.y += y_deplacement/step;
+
+		printf("value x : %f\n", current.x);
+		printf("value y : %f\n", current.y);
+		printf("value i : %d\n", i);
+
+		to.width = current.width;
+		to.height = current.height;
+		to.x = current.x;
+		to.y = current.y;
+		xy2lr(&to);
+		draw_move(to);
+	}
 
 	return 0;
 }
