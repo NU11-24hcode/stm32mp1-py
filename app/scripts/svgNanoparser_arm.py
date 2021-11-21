@@ -7,13 +7,13 @@ class svgNanoparser :
         print('Init')
     
     def extractCoordinates(self, imageSvg):
-        filename = "nanosvg_arm"
+        filename = "nanosvg"
         file = osp.abspath(filename)
         img = osp.abspath(imageSvg)
         print(img)
         output = sp.run([file, img])
 
-svg = svgNanoparser()
+#svg = svgNanoparser()
 
 
-svg.extractCoordinates("nano.svg")
+#svg.extractCoordinates("app/libs/nano.svg")
