@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
+
 @Component({
   selector: 'app-grille',
   templateUrl: './grille.component.html',
@@ -7,7 +8,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class GrilleComponent implements OnInit {
 
-  constructor() { }
+
+
+  constructor() {
+
+  }
 
   @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
@@ -16,8 +21,29 @@ export class GrilleComponent implements OnInit {
 
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d');
+    this.draw();
   }
 
   animate(): void {}
+  draw() {
+    const canvas = document.querySelector('#canvas');
+
+    // set line stroke and line width
+    this.ctx.strokeStyle = 'black';
+    this.ctx.lineWidth = 2;
+
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(100, 100);
+    this.ctx.lineTo(300, 100);
+    this.ctx.stroke();
+
+}
+
+
+
+
+
+
 
 }

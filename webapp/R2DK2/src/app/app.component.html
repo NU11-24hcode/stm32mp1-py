@@ -1,1 +1,9 @@
 <app-grille></app-grille>
+<h1>{{lab.getCommandes()}}</h1>
+
+<button (click)="lab.addCommand(0)">Droite</button>
+<button (click)="lab.addCommand(1)">Gauche</button>
+<button (click)="lab.addCommand(2)">Haut</button>
+<button (click)="lab.addCommand(3)">Bas</button>
+
+<!--<button (click)="lab.startTheTry()">Start!</button>-->
