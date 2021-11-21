@@ -1,11 +1,12 @@
-import time
+import os.path as osp
 from ctypes import *
 class maClass () :
     def __init__(self):
-        so_libpolargraph = "/home/root/libpolargraph.so"
+        so_libpolargraph = "/home/atelier/Documents/24hcode/polargraph_sources/libpolargraph.so"
+        #file = osp.abspath(so_libpolargraph)
         self.libpolargraph = CDLL(so_libpolargraph)
         
-        self.libpolargraph.pen_up()
+        #self.libpolargraph.pen_up()
         
         self.libpolargraph.draw_init()
         
@@ -23,8 +24,10 @@ class maClass () :
         
         self.libpolargraph.pen_up()
         
-         self.libpolargraph.draw_goto(c_float(0),c_float(0))
+        self.libpolargraph.draw_goto(c_float(0),c_float(0))
         
         self.libpolargraph.draw_close()
+        
+        input('Test')
 
 maClass()
